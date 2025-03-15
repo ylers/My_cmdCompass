@@ -7,7 +7,7 @@ TAG_COLORS = ["Orange", "Cyan", "Azure", "Yellow", "Pink", "Green", "Red", "Purp
 
 
 class GlobalTagWindow(ctk.CTkToplevel):
-    def __init__(self, master, data_manager):
+    def __init__(self, master, data_manager,MainWindow_x,MainWindow_y):
         super().__init__(master)
         self.title("Create New Tag")
 
@@ -15,13 +15,14 @@ class GlobalTagWindow(ctk.CTkToplevel):
         tag_window_height = 800
         tag_window_width = 270
 
-        # 计算窗口的中心位置
-        x = (screenSize["SCREEN_WIDTH"] / 2) - (tag_window_width / 2)
-        y = (screenSize["SCREEN_HEIGHT"] / 2) - (tag_window_height / 2)
+
+
+        # Calculate the center position of the window
+        x = (screenSize["SCREEN_WIDTH"] / 3) - (tag_window_width/2)  + MainWindow_x
+        y = (screenSize["SCREEN_HEIGHT"] / 3) - (tag_window_height/2) + MainWindow_y
 
         self.geometry('%dx%d+%d+%d' % (tag_window_width, tag_window_height, x, y))
 
-        # 确保窗口在主窗口前面显示，并随主窗口位置变化
         self.transient(master)
         self.lift()
 
