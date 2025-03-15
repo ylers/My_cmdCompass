@@ -10,16 +10,21 @@ class GlobalTagWindow(ctk.CTkToplevel):
     def __init__(self, master, data_manager):
         super().__init__(master)
         self.title("Create New Tag")
-        
+
         screenSize = getScreenSize()
         tag_window_height = 800
         tag_window_width = 270
 
-        x = (screenSize["SCREEN_WIDTH"]*0.01) 
-        y = (screenSize["SCREEN_HEIGHT"]/2) - (tag_window_height/2)
+        # 计算窗口的中心位置
+        x = (screenSize["SCREEN_WIDTH"] / 2) - (tag_window_width / 2)
+        y = (screenSize["SCREEN_HEIGHT"] / 2) - (tag_window_height / 2)
 
         self.geometry('%dx%d+%d+%d' % (tag_window_width, tag_window_height, x, y))
-        
+
+        # 确保窗口在主窗口前面显示，并随主窗口位置变化
+        self.transient(master)
+        self.lift()
+
         self.data_manager = data_manager
 
         # Main frame to hold everything
